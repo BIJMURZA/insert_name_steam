@@ -18,7 +18,7 @@ print("Разработчик:", developer)
 print("Издатель:", publisher)
 print("                                   ")
 
-app_name = "call-of-duty-black-ops-ii"
+app_name = "need-for-speed-unbound"
 url = "https://steampay.com/game/" + app_name
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "lxml").find("div", class_="product__current-price").text.split()[0]
@@ -28,13 +28,13 @@ else:
     print("Цена Steampay: Нет в наличии")
 
 
-app_name = "zombie-army-trilogy"
+app_name = "need-for-speed-unbound"
 url = "https://steambuy.com/steam/" + app_name
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "lxml")
-if soup.find("div", class_="product-price__cost") is not None:
-    print("Цена Steambuy: " + soup.find('div', class_="product-price__cost").text.split()[0])
+if soup.find("div", class_="product-price__action").text.strip() != "Нет в наличии":
+    print("Цена Steambuy: ", soup.find("div", class_="product-price__cost").text.split()[0])
 else:
-    print("Цена Steambuy: Нет в наличии " )
+    print("Цена Steambuy: Нет в наличии")
 
-
+app_name = ""
