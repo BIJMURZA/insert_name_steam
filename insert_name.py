@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 app_id = "730"
 url = "https://store.steampowered.com/app/" + app_id + "'"
-
 response = requests.get(url, headers={'Accept-Language': 'ru-Ru'})
 soup = BeautifulSoup(response.content, "lxml")
 title = soup.find("div", class_="apphub_AppName").text
@@ -12,8 +11,31 @@ description = soup.find("div", class_="game_description_snippet").text.strip()
 developer = soup.find("div", id="developers_list").text.strip()
 publisher = soup.find_all("div", class_="dev_row")[1].find("div", class_="summary").text.strip()
 
-print(url)
+print("_______________Steam_______________")
 print("Название игры:", title)
 print("Описание игры:", description)
 print("Разработчик:", developer)
 print("Издатель:", publisher)
+print("                                   ")
+
+app_name = "call-of-duty-black-ops-ii"
+url = "https://steampay.com/game/" + app_name
+response = requests.get(url)
+soup = BeautifulSoup(response.content, "lxml").find("div", class_="product__current-price").text.split()[0]
+if soup != "СКОРО":
+    print("Цена Steampay: ", soup)
+else:
+    print("Цена Steampay: Нет в наличии")
+
+
+app_name = "zombie-army-trilogy"
+url = "https://steambuy.com/steam/" + app_name
+response = requests.get(url)
+soup = BeautifulSoup(response.content, "lxml")
+print(url)
+if soup.find("div", class_="product-price__cost") is not None:
+    print("Цена Steambuy: " + soup.find('div', class_="product-price__cost").text.split()[0])
+else:
+    print("Цена Steambuy: Нет в наличии " )
+
+
