@@ -32,7 +32,6 @@ app_name = "zombie-army-trilogy"
 url = "https://steambuy.com/steam/" + app_name
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "lxml")
-print(url)
 if soup.find("div", class_="product-price__cost") is not None:
     print("Цена Steambuy: " + soup.find('div', class_="product-price__cost").text.split()[0])
 else:
