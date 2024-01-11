@@ -37,7 +37,7 @@ if soup.find("div", class_="product-price__action").text.strip() != "Нет в �
 else:
     print("Цена Steambuy: Нет в наличии")
 
-app_name = "elden-ring"
+app_name = "Rage"
 url = "https://zaka-zaka.com/game/" + app_name
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "lxml")
@@ -45,3 +45,5 @@ if soup.find("div", class_="price"):
     print("Zaka-Zaka: ", soup.find("div", class_="price"))
 else:
     print("Zaka-Zaka: Нет в наличии")
+
+
