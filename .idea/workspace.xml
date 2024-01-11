@@ -67,7 +67,7 @@
       <workItem from="1704788620117" duration="4268000" />
       <workItem from="1704821168647" duration="5278000" />
       <workItem from="1704874253249" duration="1071000" />
-      <workItem from="1704961975383" duration="1738000" />
+      <workItem from="1704961975383" duration="4094000" />
     </task>
     <task id="LOCAL-00001" summary="insert">
       <option name="closed" value="true" />
@@ -125,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704963301245</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="insert">
+      <option name="closed" value="true" />
+      <created>1704963865483</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704963865483</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +144,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="insert" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/insert_name_steam$insert_name.coverage" NAME="insert_name Coverage Results" MODIFIED="1704963756350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/insert_name_steam$insert_name.coverage" NAME="insert_name Coverage Results" MODIFIED="1704966113923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
