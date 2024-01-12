@@ -13,7 +13,7 @@ for i in range (len(aid)):
     print(aid[i])
 
 
-app_id = "730"
+app_id = "2138330"
 url = "https://store.steampowered.com/app/" + app_id + "'"
 response = requests.get(url, headers={'Accept-Language': 'ru-Ru'})
 soup = BeautifulSoup(response.content, "lxml")
