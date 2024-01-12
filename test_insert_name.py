@@ -2,6 +2,17 @@ import psycopg2
 import requests
 from bs4 import BeautifulSoup
 
+con = psycopg2.connect(dbname='rusync', user='admin',
+                       password='1945', host='localhost')
+cursor = con.cursor()
+cursor.execute('SELECT * FROM games')
+aid = []
+for row in cursor.fetchall():
+    aid.append(row[0])
+for i in range (len(aid)):
+    print(aid[i])
+
+
 app_id = "730"
 url = "https://store.steampowered.com/app/" + app_id + "'"
 response = requests.get(url, headers={'Accept-Language': 'ru-Ru'})
@@ -35,7 +46,7 @@ soup = BeautifulSoup(response.content, "lxml")
 if soup.find("div", class_="product-price__action").text.strip() != "Нет в наличии":
     print("Steambuy: ", soup.find("div", class_="product-price__cost").text.split()[0])
 else:
-    print("teambuy: Нет в наличии")
+    print("Steambuy: Нет в наличии")
 
 app_name = "Rage"
 url = "https://zaka-zaka.com/game/" + app_name
