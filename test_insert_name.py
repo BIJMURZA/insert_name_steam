@@ -9,7 +9,7 @@ cursor.execute('SELECT * FROM games')
 aid = []
 for row in cursor.fetchall():
     aid.append(row[0])
-for i in range (len(aid)):
+for i in range(len(aid)):
     print(aid[i])
 
 
