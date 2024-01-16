@@ -12,7 +12,7 @@ def reformat_date(date):
     return f"{date[0].zfill(2)}/{month_number.zfill(2)}/{date[2]}"
 
 
-def insert_game(app, cursor):
+def insert_game(app):
     url = f"https://store.steampowered.com/app/{app}"
     response = requests.get(url, headers={'Accept-Language': 'ru-Ru'})
     soup = BeautifulSoup(response.content, "lxml")

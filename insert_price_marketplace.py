@@ -83,6 +83,7 @@ def take_price_gamerz(game_name):
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
                            password='1945', host='localhost')
+
     cursor = con.cursor()
 
     marketplaces = ['steam', 'steampay', 'gamerz', 'zaka_zaka', 'gabestore', 'steambuy']
