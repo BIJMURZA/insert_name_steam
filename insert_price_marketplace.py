@@ -139,7 +139,6 @@ if __name__ == "__main__":
     marketplaces = ['STEAM', 'STEAMPAY', 'GAMERZ', 'ZAKA_ZAKA', 'GABESTORE', 'STEAMBUY']
 
     for marketplace in marketplaces:
-        print(marketplace)
         match marketplace:
             case 'STEAM':
                 take_price_steam(cursor)
