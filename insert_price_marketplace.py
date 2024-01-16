@@ -25,6 +25,73 @@ def take_price_steam(cursor):
             cursor.execute(update, (price, aid_game))
 
 
+def take_price_steampay(cursor):
+    update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
+    cursor.execute('SELECT game_name FROM steampay')
+    games = []
+    for row in cursor.fetchall():
+        games.append(row[0])
+
+    for game in games:
+        url = f"https://steampay.com/game/{game}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "lxml")
+        if soup.find("div", class_="product__current-price"):
+            price = soup.find("div", class_="product__current-price").text.split()[0]
+            if price != "СКОРО":
+                cursor.execute(update, (price, game))
+            else:
+                cursor.execute(update, ("Нет в наличии", game))
+        elif game == "-":
+            cursor.execute(update, ("-", game))
+        else:
+            cursor.execute(update, ("Нет в наличии", game))
+
+def take_price_steambuy(cursor):
+    update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
+    cursor.execute('SELECT game_name FROM steambuy')
+    games = []
+    for row in cursor.fetchall():
+        games.append(row[0])
+
+    for game in games:
+        url = f"https://steambuy.com/{game}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "lxml")
+        if soup.find("div", class_="product-price__action").text.strip() != "Нет в наличии":
+            price = soup.find("div", class_="product-price__cost").text.split()[0]
+            cursor.execute(update, (price, game))
+        elif game == "-":
+            cursor.execute(update, ("-", game))
+        else:
+            cursor.execute(update, ("Нет в наличии", game))
+         
+
+def take_price_zaka_zaka(cursor):
+    update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
+    cursor.execute('SELECT game_name FROM zaka_zaka')
+    games = []
+    for row in cursor.fetchall():
+        games.append(row[0])
+
+    for game in games:
+        url = f"https://zaka-zaka.com/game/{game}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "lxml")
+        print(url)
+        if soup.find("div", class_="price"):
+            price = soup.find("div", class_="price").text.split()[0]
+            cursor.execute(update, (price, game))
+        elif game == "-":
+            cursor.execute(update, ("-", game))
+        else:
+            cursor.execute(update, ("Нет в наличии", game))
+
+
+
+
+
+
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
                            password='1945', host='localhost')
@@ -33,12 +100,20 @@ if __name__ == "__main__":
     marketplaces = ['STEAM', 'STEAMPAY', 'GAMERZ', 'ZAKA_ZAKA', 'GABESTORE', 'STEAMBUY']
 
     for marketplace in marketplaces:
+        print(marketplace)
         match marketplace:
-            case 'STEAM':
+            case 'STEAM1':
                 take_price_steam(cursor)
                 con.commit()
-            case 'STEAMPAY':
-                print("STEAMPAY")
+            case 'STEAMPAY1':
+                take_price_steampay(cursor)
+                con.commit()
+            case 'STEAMBUY1':
+                take_price_steambuy(cursor)
+                con.commit()
+            case 'ZAKA_ZAKA':
+                take_price_zaka_zaka(cursor)
+                con.commit()
 
     cursor.close()
     con.close()

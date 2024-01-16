@@ -30,8 +30,6 @@ def insert_game(app, cursor):
     cursor.execute(update, (title, description, developer, publisher, reformat_date(release), review, app))
 
 
-
-
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
                            password='1945', host='localhost')
