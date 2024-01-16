@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfdf2707-c97a-4e1f-b1c8-f3319236b423" name="Changes" comment="Функция take_price">
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+    <list default="true" id="dfdf2707-c97a-4e1f-b1c8-f3319236b423" name="Changes" comment="Функция take_price_zaka_zaka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Games.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Games.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insert_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/insert_game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/insert_price_marketplace.py" beforeDir="false" afterPath="$PROJECT_DIR$/insert_price_marketplace.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +124,7 @@
       <workItem from="1705262971466" duration="197000" />
       <workItem from="1705263178298" duration="5395000" />
       <workItem from="1705302522556" duration="4686000" />
-      <workItem from="1705380998667" duration="989000" />
+      <workItem from="1705380998667" duration="1743000" />
     </task>
     <task id="LOCAL-00001" summary="insert">
       <option name="closed" value="true" />
@@ -265,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705220909232</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Функция take_price_zaka_zaka">
+      <option name="closed" value="true" />
+      <created>1705382049235</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705382049235</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,12 +293,13 @@
     <MESSAGE value="work_insert_game_name_marketplace" />
     <MESSAGE value="Получение price Steam" />
     <MESSAGE value="Функция take_price" />
-    <option name="LAST_COMMIT_MESSAGE" value="Функция take_price" />
+    <MESSAGE value="Функция take_price_zaka_zaka" />
+    <option name="LAST_COMMIT_MESSAGE" value="Функция take_price_zaka_zaka" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/insert_name_steam$insert_name.coverage" NAME="insert_name Coverage Results" MODIFIED="1704986055409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/insert_name_steam$insert_game.coverage" NAME="insert_game Coverage Results" MODIFIED="1705381166627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/insert_name_steam$insert_price_marketplace.coverage" NAME="insert_price_marketplace Coverage Results" MODIFIED="1705381985182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/insert_name_steam$insert_price_marketplace.coverage" NAME="insert_price_marketplace Coverage Results" MODIFIED="1705382607346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/insert_name_steam$test_insert_name.coverage" NAME="test_insert_name Coverage Results" MODIFIED="1705153036658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/insert_name_steam$insert_game_name_marketplace.coverage" NAME="insert_game_name_marketplace Coverage Results" MODIFIED="1705159498789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

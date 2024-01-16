@@ -47,6 +47,7 @@ def take_price_steampay(cursor):
         else:
             cursor.execute(update, ("Нет в наличии", game))
 
+
 def take_price_steambuy(cursor):
     update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
     cursor.execute('SELECT game_name FROM steambuy')
@@ -88,6 +89,25 @@ def take_price_zaka_zaka(cursor):
             cursor.execute(update, ("Нет в наличии", game))
 
 
+def take_price_gabestore(cursor):
+    update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
+    cursor.execute('SELECT game_name FROM gabestore')
+
+    games = []
+    for row in cursor.fetchall():
+        games.append(row[0])
+
+    for game in games:
+        url = f"https://gabestore.ru/game/{game}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "lxml")
+        if soup.find("div", class_="b-card__price-currentprice"):
+            price = soup.find("div", class_="b-card__price-currentprice").text.split()[0]
+            cursor.execute(update, (price, game))
+        elif game == "-":
+            cursor.execute(update, ("-", game))
+        else:
+            cursor.execute(update, ("Нет в наличии", game))
 
 
 
@@ -111,8 +131,11 @@ if __name__ == "__main__":
             case 'STEAMBUY1':
                 take_price_steambuy(cursor)
                 con.commit()
-            case 'ZAKA_ZAKA':
+            case 'ZAKA_ZAKA1':
                 take_price_zaka_zaka(cursor)
+                con.commit()
+            case 'GABESTORE':
+                take_price_gabestore(cursor)
                 con.commit()
 
     cursor.close()
