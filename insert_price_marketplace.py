@@ -1,5 +1,6 @@
 import psycopg2
 import requests
+import time
 from bs4 import BeautifulSoup
 
 
@@ -80,13 +81,30 @@ def take_price_gamerz(game_name):
         return "Нет в наличии"
 
 
+def take_price_game_mag(game_name):
+    url = f"https://game-mag.ru/shop/{game_name}"
+    response = requests.get(url)
+    print(response)
+    soup = BeautifulSoup(response.content, "lxml")
+    print(url)
+    if soup.find("p", class_="stock out-of-stock"):
+        return "Нет в наличии"
+    elif soup.find("p", class_="price"):
+        if soup.find("p", class_="price").text.split()[2] != '₽':
+            return soup.find("p", class_="price").text.split()[0]
+        elif soup.find("p", class_="price").text.split()[2] == '₽':
+            return soup.find("p", class_="price").text.split()[0] + soup.find("p", class_="price").text.split()[1]
+    elif game_name == "-":
+        return "-"
+
+
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
                            password='1945', host='localhost')
 
     cursor = con.cursor()
 
-    marketplaces = ['steam', 'steampay', 'gamerz', 'zaka_zaka', 'gabestore', 'steambuy']
+    marketplaces = ['steam', 'steampay', 'gamerz', 'zaka_zaka', 'gabestore', 'steambuy', 'game_mag']
 
     for marketplace in marketplaces:
         update = f"UPDATE {marketplace} SET price = %s WHERE game_name = %s"
@@ -100,19 +118,28 @@ if __name__ == "__main__":
                     cursor.execute(f"UPDATE steam SET price = %s WHERE aid = %s", (take_price_steam(aid), aid))
             case 'steampay':
                 for game in games:
+                    time.sleep(60)
                     cursor.execute(update, (take_price_steampay(game), game))
             case 'steambuy':
                 for game in games:
+                    time.sleep(60)
                     cursor.execute(update, (take_price_steambuy(game), game))
             case 'zaka_zaka':
                 for game in games:
+                    time.sleep(60)
                     cursor.execute(update, (take_price_zaka_zaka(game), game))
             case 'gabestore':
                 for game in games:
+                    time.sleep(60)
                     cursor.execute(update, (take_price_gabestore(game), game))
             case 'gamerz':
                 for game in games:
+                    time.sleep(60)
                     cursor.execute(update, (take_price_gamerz(game), game))
+            case 'game_mag':
+                for game in games:
+                    time.sleep(60)
+                    cursor.execute(update, (take_price_game_mag(game), game))
         con.commit()
 
     cursor.close()
