@@ -46,22 +46,6 @@ def insert_game(app, cursor):
                             '\n'.join(data_min), '\n'.join(data_rec), app, ))
 
 
-def take_aid_gfn():
-    df = pd.read_excel('Games.xlsx')
-    return df['AID GFN'].tolist()
-
-def insert_aid_gfn(gfn, game, cursor):
-    update = """UPDATE games SET aid_gfn = %s WHERE aid = %s;"""
-    cursor.execute(update, (gfn, game, ))
-
-
-def take_aid():
-    df = pd.read_excel('Games.xlsx')
-    return df['AID'].tolist()
-
-def insert_aid(game_aid):
-    update = """INSERT INTO games(aid) VALUES (%s);"""
-    cursor.execute(update, (game_aid, ))
 
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
@@ -69,9 +53,12 @@ if __name__ == "__main__":
     cursor = con.cursor()
     cursor.execute('SELECT aid FROM games')
 
+
+
     aid = []
     for row in cursor.fetchall():
         aid.append(row[0])
+
 
     for game_id in aid:
         insert_game(str(game_id), cursor)
