@@ -1,5 +1,6 @@
 import psycopg2
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 
 
@@ -12,7 +13,7 @@ def reformat_date(date):
     return f"{date[0].zfill(2)}/{month_number.zfill(2)}/{date[2]}"
 
 
-def insert_game(app):
+def insert_game(app, curs):
     url = f"https://store.steampowered.com/app/{app}"
     response = requests.get(url, headers={'Accept-Language': 'ru-Ru'})
     soup = BeautifulSoup(response.content, "lxml")
@@ -27,14 +28,17 @@ def insert_game(app):
             publisher = %s, release = TO_DATE(%s, 'DD/MM/YYYY'), review = %s
             WHERE aid = %s;
             """
-    cursor.execute(update, (title, description, developer, publisher, reformat_date(release), review, app))
+    curs.execute(update, (title, description, developer, publisher, reformat_date(release), review, app))
 
+def insert_aid_gfn(gfn, ad):
+    update = """UPDATE games SET aid_gfn = %s WHERE aid = %s;"""
+    cursor.execute(update, (gfn, ad))
 
 if __name__ == "__main__":
     con = psycopg2.connect(dbname='rusync', user='admin',
                            password='1945', host='localhost')
     cursor = con.cursor()
-    cursor.execute('SELECT * FROM games')
+    cursor.execute('SELECT aid FROM games')
 
     aid = []
     for row in cursor.fetchall():
@@ -43,6 +47,7 @@ if __name__ == "__main__":
     for game in range(len(aid)):
         insert_game(str(aid[game]), cursor)
         con.commit()
+
 
     cursor.close()
     con.close()

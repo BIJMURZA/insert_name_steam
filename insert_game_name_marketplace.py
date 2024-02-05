@@ -12,9 +12,11 @@ def take_aid():
     return df['AID'].tolist()
 
 
+
 def insert_game_name_marketplace(market, game, aid, cursor):
     update = f"UPDATE {market} SET game_name = %s WHERE aid = %s;"
     return cursor.execute(update, (game, aid))
+
 
 
 if __name__ == "__main__":
